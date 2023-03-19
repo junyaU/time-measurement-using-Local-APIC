@@ -119,17 +119,13 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle, EFI_SYSTEM_TABLE *system_tab
     }
 
     EFI_GRAPHICS_OUTPUT_PROTOCOL *
-        gop;
-    if (EFI_ERROR(OpenGOP(image_handle, &gop)))
-    {
-        Print(L"failed to open GOP\n");
-        Halt();
-    }
+        gop
+}
 
-    Print(L"nice");
+Print(L"nice");
 
-    while (1)
-        ;
+while (1)
+    ;
 
-    return EFI_SUCCESS;
+return EFI_SUCCESS;
 }
