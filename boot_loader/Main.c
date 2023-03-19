@@ -128,15 +128,6 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle,
 {
     Print(L"hello!");
 
-    CHAR8 memory_map_buffer[4096 * 4];
-    struct MemoryMap memory_map = {
-        sizeof(memory_map_buffer), memory_map_buffer, 0, 0, 0, 0};
-    if (EFI_ERROR(GetMemoryMap(&memory_map)))
-    {
-        Print(L"failed to get memory map\n");
-        Halt();
-    }
-
     EFI_FILE_PROTOCOL *root_dir;
     if (EFI_ERROR(OpenRootDir(image_handle, &root_dir)))
     {
@@ -199,6 +190,52 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle,
     }
 
     Print(L"nice");
+
+    EFI_GRAPHICS_OUTPUT_PROTOCOL *gop;
+    if (EFI_ERROR(OpenGOP(image_handle, &gop)))
+    {
+        Print(L"failed to open GOP\n");
+        Halt();
+    }
+
+    CHAR8 memory_map_buffer[4096 * 4];
+    struct MemoryMap memory_map = {
+        sizeof(memory_map_buffer), memory_map_buffer, 0, 0, 0, 0};
+    if (EFI_ERROR(GetMemoryMap(&memory_map)))
+    {
+        Print(L"failed to get memory map\n");
+        Halt();
+    }
+
+    if (EFI_ERROR(gBS->ExitBootServices(image_handle, memory_map.map_key)))
+    {
+        Print(L"could not exit boot service\n");
+        Halt();
+    }
+
+    struct FrameBufferConfig config = {(UINT8 *)gop->Mode->FrameBufferBase, gop->Mode->Info->PixelsPerScanLine,
+                                       gop->Mode->Info->HorizontalResolution,
+                                       gop->Mode->Info->VerticalResolution, 0};
+
+    switch (gop->Mode->Info->PixelFormat)
+    {
+    case PixelRedGreenBlueReserved8BitPerColor:
+        config.pixel_format = kPixelRGB8BitPerColor;
+        break;
+    case PixelBlueGreenRedReserved8BitPerColor:
+        config.pixel_format = kPixelBGR8BitPerColor;
+        break;
+    default:
+        Print(L"Unimplemented pixel format: %d\n",
+              gop->Mode->Info->PixelFormat);
+        Halt();
+    }
+
+    EFI_PHYSICAL_ADDRESS kernel_entry_offset = 24;
+    UINT64 kernel_entry_addr = *(UINT64 *)(kernel_start_addr + kernel_entry_offset);
+
+    typedef void __attribute__((sysv_abi)) KernelEntry(const struct FrameBufferConfig *, const struct MemoryMap *);
+    ((KernelEntry *)kernel_entry_addr)(&config, &memory_map);
 
     while (1)
         ;
