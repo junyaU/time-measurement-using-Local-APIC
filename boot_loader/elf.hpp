@@ -14,6 +14,7 @@ typedef int64_t Elf64_Sxword;
 
 typedef struct
 {
+    unsigned char e_ident[EI_NIDENT];
     Elf64_Half e_type;
     Elf64_Half emachine;
     Elf64_Word e_version;
