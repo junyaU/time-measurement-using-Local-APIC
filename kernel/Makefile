@@ -1,5 +1,5 @@
 TARGET = kernel.elf
-OBJS = main.o hankaku.o
+OBJS = main.o hankaku.o drawing.o
 DEPENDS = $(join $(dir $(OBJS)),$(addprefix .,$(notdir $(OBJS:.o=.d))))
 
 CPPFLAGS += -I.
