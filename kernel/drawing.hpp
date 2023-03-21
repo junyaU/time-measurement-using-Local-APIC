@@ -34,3 +34,10 @@ class BGR8BitScreenDrawer : public ScreenDrawer {
     using ScreenDrawer::ScreenDrawer;
     virtual void Draw(int x, int y, const PixelColor& c) override;
 };
+
+extern ScreenDrawer* screen_drawer;
+extern FrameBufferConfig config;
+
+void InitializeScreenDrawer(const FrameBufferConfig config);
+
+void DrawConsoleScreen();
