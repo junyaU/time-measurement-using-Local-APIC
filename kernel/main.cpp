@@ -16,13 +16,6 @@
 #define __INT_MAX__ 0x7fffffff
 #endif
 
-// placement new
-void* operator new(size_t size, void* buf) { return buf; }
-void operator delete(void* obj) noexcept {}
-
-char console_mem[sizeof(Console)];
-Console* console;
-
 int printj(const char* format, ...) {
     va_list ap;
     int result;
@@ -42,10 +35,10 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
 
     DrawConsoleScreen();
 
-    console =
-        new (console_mem) Console{*screen_drawer, {50, 200, 10}, {0, 0, 0}};
+    InitializeConsole();
 
-    printj("hello");
+    printj("hello\n");
+    printj("yroshiku");
 
     while (1) {
         __asm__("hlt");

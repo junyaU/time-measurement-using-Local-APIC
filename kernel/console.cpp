@@ -1,6 +1,7 @@
 #include "console.hpp"
 
 #include <cstring>
+#include <new>
 
 #include "font.hpp"
 
@@ -49,4 +50,15 @@ void Console::NewLine() {
     }
 
     memset(buffer_[kRows - 1], 0, kColumns + 1);
+}
+
+namespace {
+char console_mem[sizeof(Console)];
+}
+
+Console* console;
+
+void InitializeConsole() {
+    ::console =
+        new (console_mem) Console{*screen_drawer, {50, 200, 10}, {0, 0, 0}};
 }
