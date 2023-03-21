@@ -16,6 +16,10 @@
 #define __INT_MAX__ 0x7fffffff
 #endif
 
+// placement new
+void* operator new(size_t size, void* buf) { return buf; }
+void operator delete(void* obj) noexcept {}
+
 int printj(const char* format, ...) {
     va_list ap;
     int result;
