@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <cstdio>
 
+#include "acpi.hpp"
 #include "console.hpp"
 #include "drawing.hpp"
 #include "font.hpp"
@@ -32,7 +33,7 @@ int printj(const char* format, ...) {
 }
 
 extern "C" void main(const FrameBufferConfig& frame_buffer_config,
-                     const MemoryMap& memory_map) {
+                     const MemoryMap& memory_map, const acpi::RSDP& rsdp) {
     InitializeScreenDrawer(frame_buffer_config);
 
     DrawConsoleScreen();

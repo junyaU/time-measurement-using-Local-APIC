@@ -231,11 +231,21 @@ EFI_STATUS EFIAPI UefiMain(EFI_HANDLE image_handle,
         Halt();
     }
 
+    VOID *rsdp = NULL;
+    for (UINTN i = 0; i < system_table->NumberOfTableEntries; ++i)
+    {
+        if (CompareGuid(&gEfiAcpiTableGuid, &system_table->ConfigurationTable[i].VendorGuid))
+        {
+            rsdp = system_table->ConfigurationTable[i].VendorTable;
+            break;
+        }
+    }
+
     EFI_PHYSICAL_ADDRESS kernel_entry_offset = 24;
     UINT64 kernel_entry_addr = *(UINT64 *)(kernel_start_addr + kernel_entry_offset);
 
-    typedef void __attribute__((sysv_abi)) KernelEntry(const struct FrameBufferConfig *, const struct MemoryMap *);
-    ((KernelEntry *)kernel_entry_addr)(&config, &memory_map);
+    typedef void __attribute__((sysv_abi)) KernelEntry(const struct FrameBufferConfig *, const struct MemoryMap *, const VOID *);
+    ((KernelEntry *)kernel_entry_addr)(&config, &memory_map, rsdp);
 
     while (1)
         ;
