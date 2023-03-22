@@ -1,8 +1,5 @@
 #include "console.hpp"
 
-#include <cstring>
-#include <new>
-
 #include "font.hpp"
 
 Console::Console(ScreenDrawer& drawer, const PixelColor& fg_color,

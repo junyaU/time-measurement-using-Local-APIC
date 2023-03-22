@@ -1,4 +1,4 @@
-main.o: main.cpp \
+interrupt.o: interrupt.cpp interrupt.hpp \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/array \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__config \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__tuple \
@@ -30,8 +30,4 @@ main.o: main.cpp \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/assert.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/_ansi.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/functional \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdio \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdio.h \
-  console.hpp drawing.hpp frame_buffer_config.hpp font.hpp interrupt.hpp \
-  memory_map.hpp
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit

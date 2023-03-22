@@ -1,7 +1,5 @@
 #include "drawing.hpp"
 
-#include <new>
-
 void RGB8BitScreenDrawer::Draw(int x, int y, const PixelColor& c) {
     auto target_pixel_addr = pixelAt(x, y);
     target_pixel_addr[0] = c.r;

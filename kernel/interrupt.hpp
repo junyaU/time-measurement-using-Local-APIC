@@ -54,8 +54,7 @@ constexpr IDTEntryTypeAttribute MakeIDTAttr(DescriptorType type,
     return attr;
 };
 
-void registerIDTEntry(InterruptVector::Number vector,
-                      IDTEntryTypeAttribute attr, uint64_t offset,
+void registerIDTEntry(int vector, IDTEntryTypeAttribute attr, uint64_t offset,
                       uint16_t segment_selector);
 
 class InterruptVector {

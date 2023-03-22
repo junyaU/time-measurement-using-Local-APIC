@@ -1,3 +1,4 @@
+#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -6,6 +7,7 @@
 #include "drawing.hpp"
 #include "font.hpp"
 #include "frame_buffer_config.hpp"
+#include "interrupt.hpp"
 #include "memory_map.hpp"
 
 #if __INTELLISENSE__
@@ -15,10 +17,6 @@
 #define va_end(va)
 #define __INT_MAX__ 0x7fffffff
 #endif
-
-// placement new
-void* operator new(size_t size, void* buf) { return buf; }
-void operator delete(void* obj) noexcept {}
 
 int printj(const char* format, ...) {
     va_list ap;

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cstring>
+#include <new>
+
 #include "drawing.hpp"
 
 class Console {
