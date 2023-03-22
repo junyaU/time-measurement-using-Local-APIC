@@ -65,4 +65,6 @@ const SDTHeader& XSDT::operator[](size_t i) const {
 size_t XSDT::countSDTEntries() const {
     return (this->header.length - sizeof(SDTHeader)) / sizeof(uint64_t);
 }
+
+void Initialize(const RSDP& rsdp) {}
 }  // namespace acpi

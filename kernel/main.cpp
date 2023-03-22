@@ -32,6 +32,8 @@ int printj(const char* format, ...) {
     return result;
 }
 
+const acpi::FADT* fadt;
+
 extern "C" void main(const FrameBufferConfig& frame_buffer_config,
                      const MemoryMap& memory_map, const acpi::RSDP& rsdp) {
     InitializeScreenDrawer(frame_buffer_config);
@@ -39,9 +41,6 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
     DrawConsoleScreen();
 
     InitializeConsole();
-
-    printj("hello\n");
-    printj("yroshiku\n");
 
     if (!rsdp.isValid()) {
         printj("fail");
@@ -52,6 +51,20 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
 
     if (!xsdt.header.isValid("XSDT")) {
         printj("fail2");
+    }
+
+    fadt = nullptr;
+    for (int i = 0; i < xsdt.countSDTEntries(); i++) {
+        const auto& sdt_entry = xsdt[i];
+
+        if (sdt_entry.isValid("FACP")) {
+            fadt = reinterpret_cast<const acpi::FADT*>(&sdt_entry);
+            break;
+        }
+    }
+
+    if (fadt == nullptr) {
+        printj("miss\n");
     }
 
     printj("ok");
