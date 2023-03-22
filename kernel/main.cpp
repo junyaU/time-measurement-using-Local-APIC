@@ -41,7 +41,20 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
     InitializeConsole();
 
     printj("hello\n");
-    printj("yroshiku");
+    printj("yroshiku\n");
+
+    if (!rsdp.isValid()) {
+        printj("fail");
+    }
+
+    const acpi::XSDT& xsdt =
+        *reinterpret_cast<const acpi::XSDT*>(rsdp.xsdt_addr);
+
+    if (!xsdt.header.isValid("XSDT")) {
+        printj("fail2");
+    }
+
+    printj("ok");
 
     while (1) {
         __asm__("hlt");
