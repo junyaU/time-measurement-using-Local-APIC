@@ -45,7 +45,11 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
 
     acpi::Initialize(rsdp);
 
-    printj("ok");
+    printj("ok\n");
+    acpi::waitMilliSec(1000);
+    printj("aaa\n");
+    acpi::waitMilliSec(1000);
+    printj("bbb\n");
 
     while (1) {
         __asm__("hlt");

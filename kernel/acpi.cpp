@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <cstring>
 
+#include "asmfunc.h"
+
 namespace {
 template <typename T>
 uint8_t SumBytes(const T* data, size_t bytes) {
@@ -95,5 +97,22 @@ void Initialize(const RSDP& rsdp) {
     }
 }
 
-void waitMilliSec(unsigned long msec) {}
+void waitMilliSec(unsigned long msec) {
+    const uint32_t start_count = receiveFromIO(fadt->pm_tmr_blk);
+    uint32_t end_count = start_count + kPMTimerFrequency * msec / 1000;
+
+    const bool pm_timer_32 = (fadt->flags >> 8) & 1;
+    if (!pm_timer_32) {
+        end_count &= 0x00ffffffu;
+    }
+
+    bool isOverFlow = end_count < start_count;
+    if (isOverFlow) {
+        while (receiveFromIO(fadt->pm_tmr_blk) >= start_count)
+            ;
+    }
+
+    while (receiveFromIO(fadt->pm_tmr_blk) < end_count)
+        ;
+}
 }  // namespace acpi

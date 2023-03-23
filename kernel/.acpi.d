@@ -7,4 +7,5 @@ acpi.o: acpi.cpp acpi.hpp \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdlib \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdlib.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstring \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/string.h
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/string.h \
+  asmfunc.h
