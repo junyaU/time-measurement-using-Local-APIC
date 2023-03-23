@@ -66,5 +66,34 @@ size_t XSDT::countSDTEntries() const {
     return (this->header.length - sizeof(SDTHeader)) / sizeof(uint64_t);
 }
 
-void Initialize(const RSDP& rsdp) {}
+const FADT* fadt;
+
+void Initialize(const RSDP& rsdp) {
+    if (!rsdp.isValid()) {
+        exit(1);
+    }
+
+    const acpi::XSDT& xsdt =
+        *reinterpret_cast<const acpi::XSDT*>(rsdp.xsdt_addr);
+
+    if (!xsdt.header.isValid("XSDT")) {
+        exit(1);
+    }
+
+    fadt = nullptr;
+    for (int i = 0; i < xsdt.countSDTEntries(); i++) {
+        const auto& sdt_entry = xsdt[i];
+
+        if (sdt_entry.isValid("FACP")) {
+            fadt = reinterpret_cast<const acpi::FADT*>(&sdt_entry);
+            break;
+        }
+    }
+
+    if (fadt == nullptr) {
+        exit(1);
+    }
+}
+
+void waitMilliSec(unsigned long msec) {}
 }  // namespace acpi

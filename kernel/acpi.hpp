@@ -57,5 +57,9 @@ struct FADT {
 
 extern const FADT* fadt;
 
-void Initialize(RSDP& rsdp);
+const int kPMTimerFrequency = 3579545;
+
+void Initialize(const RSDP& rsdp);
+
+void waitMilliSec(unsigned long msec);
 }  // namespace acpi

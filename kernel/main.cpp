@@ -32,8 +32,6 @@ int printj(const char* format, ...) {
     return result;
 }
 
-const acpi::FADT* fadt;
-
 extern "C" void main(const FrameBufferConfig& frame_buffer_config,
                      const MemoryMap& memory_map, const acpi::RSDP& rsdp) {
     InitializeScreenDrawer(frame_buffer_config);
@@ -42,30 +40,10 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
 
     InitializeConsole();
 
-    if (!rsdp.isValid()) {
-        printj("fail");
-    }
+    printj("success initialization of screen drawing\n");
+    printj("success initialization of console\n");
 
-    const acpi::XSDT& xsdt =
-        *reinterpret_cast<const acpi::XSDT*>(rsdp.xsdt_addr);
-
-    if (!xsdt.header.isValid("XSDT")) {
-        printj("fail2");
-    }
-
-    fadt = nullptr;
-    for (int i = 0; i < xsdt.countSDTEntries(); i++) {
-        const auto& sdt_entry = xsdt[i];
-
-        if (sdt_entry.isValid("FACP")) {
-            fadt = reinterpret_cast<const acpi::FADT*>(&sdt_entry);
-            break;
-        }
-    }
-
-    if (fadt == nullptr) {
-        printj("miss\n");
-    }
+    acpi::Initialize(rsdp);
 
     printj("ok");
 
