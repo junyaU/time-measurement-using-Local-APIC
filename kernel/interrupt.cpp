@@ -1,14 +1,16 @@
 #include "interrupt.hpp"
 
+#include "console.hpp"
+
 std::array<IDTEntry, kIDTEntryNum> idt;
 
 void registerIDTEntry(int vector, IDTEntryTypeAttribute attr, uint64_t offset,
                       uint16_t segment_selector) {
     idt[vector].attr = attr;
-    idt[vector].segment_selector = segment_selector;
     idt[vector].offset_low = offset & 0xffffu;
     idt[vector].offset_mid = (offset >> 16) & 0xffffu;
     idt[vector].offset_hi = offset >> 32;
+    idt[vector].segment_selector = segment_selector;
 }
 
 void notifyEOI() {
@@ -24,12 +26,18 @@ void loadIDT() {
         uint16_t limit;
         uint64_t base;
     } __attribute__((packed)) idtr = {size, address};
+
     __asm__("lidt %0" : : "m"(idtr));
+
+    __asm__("sti");
 }
 
 namespace {
 __attribute__((interrupt)) void InterruptHandlerLocalAPICTimer(
-    InterruptFrame* frame) {}
+    InterruptFrame* frame) {
+    // printj("ookokoko\n");
+    notifyEOI();
+}
 }  // namespace
 
 void initializeInterruptConfig() {

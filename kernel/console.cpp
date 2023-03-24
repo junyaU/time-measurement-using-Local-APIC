@@ -1,6 +1,16 @@
 #include "console.hpp"
 
+#include <cstdio>
+
 #include "font.hpp"
+
+#if __INTELLISENSE__
+#undef va_start(arg, va)
+#define va_start(arg, va)
+#undef va_end(va)
+#define va_end(va)
+#define __INT_MAX__ 0x7fffffff
+#endif
 
 Console::Console(ScreenDrawer& drawer, const PixelColor& fg_color,
                  const PixelColor& bg_color)
@@ -59,4 +69,17 @@ Console* console;
 void InitializeConsole() {
     ::console =
         new (console_mem) Console{*screen_drawer, {50, 200, 10}, {0, 0, 0}};
+}
+
+int printj(const char* format, ...) {
+    va_list ap;
+    int result;
+    char s[1024];
+
+    va_start(ap, format);
+    result = vsprintf(s, format, ap);
+    va_end(ap);
+
+    console->PutString(s);
+    return result;
 }

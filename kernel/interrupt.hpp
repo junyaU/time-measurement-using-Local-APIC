@@ -76,4 +76,4 @@ void notifyEOI();
 
 void initializeInterruptConfig();
 
-void LoadIDT();
+void loadIDT();

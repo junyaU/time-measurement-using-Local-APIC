@@ -1,26 +1,29 @@
-main.o: main.cpp \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/array \
+local_apic_timer.o: local_apic_timer.cpp local_apic_timer.hpp \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdlib \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__config \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__tuple \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstddef \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/version \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/type_traits \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/utility \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/initializer_list \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdlib.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstring \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/string.h \
+  acpi.hpp \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstddef \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/version \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdint \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdint.h \
+  console.hpp \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/new \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/exception \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/type_traits \
+  drawing.hpp frame_buffer_config.hpp interrupt.hpp \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/array \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__tuple \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/utility \
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/initializer_list \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__debug \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/iterator \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/iosfwd \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/wchar.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/__functional_base \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/typeinfo \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/exception \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdlib \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdlib.h \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/new \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/algorithm \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/memory \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/limits \
@@ -30,8 +33,4 @@ main.o: main.cpp \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/assert.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/_ansi.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/functional \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/cstdio \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/stdio.h \
-  acpi.hpp console.hpp drawing.hpp frame_buffer_config.hpp font.hpp \
-  interrupt.hpp local_apic_timer.hpp memory_map.hpp
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit

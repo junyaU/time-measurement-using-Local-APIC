@@ -30,4 +30,5 @@ interrupt.o: interrupt.cpp interrupt.hpp \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/assert.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/_ansi.h \
   /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/functional \
-  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit
+  /Users/uchienuruunari/osbook/devenv/x86_64-elf/include/c++/v1/bit \
+  console.hpp drawing.hpp frame_buffer_config.hpp

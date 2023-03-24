@@ -1,5 +1,5 @@
 TARGET = kernel.elf
-OBJS = main.o hankaku.o drawing.o font.o console.o newlib_support.o interrupt.o libcxx_support.o acpi.o asmfunc.o
+OBJS = main.o hankaku.o drawing.o font.o console.o newlib_support.o interrupt.o libcxx_support.o acpi.o asmfunc.o local_apic_timer.o
 DEPENDS = $(join $(dir $(OBJS)),$(addprefix .,$(notdir $(OBJS:.o=.d))))
 
 CPPFLAGS += -I.
