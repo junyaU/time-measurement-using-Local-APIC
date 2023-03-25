@@ -10,8 +10,9 @@ cd ~/edk2
 source edksetup.sh
 Build
 
-source ~/osbook/devenv/buildenv.sh
-cd $WORKING_DIRECTORY/kernel
+cd $WORKING_DIRECTORY
+source $WORKING_DIRECTORY/build-env.sh
+cd kernel
 make kernel.elf
 
 cd ~/

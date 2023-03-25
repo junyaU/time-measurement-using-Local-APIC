@@ -31,9 +31,11 @@ void loadIDT() {
 }
 
 namespace {
+int count = 0;
 __attribute__((interrupt)) void InterruptHandlerLocalAPICTimer(
     InterruptFrame* frame) {
-    printj("local_APIC_timer timed out\n");
+    count++;
+    printj("local_APIC_timer timed out %d \n", count);
     notifyEOI();
 }
 }  // namespace
