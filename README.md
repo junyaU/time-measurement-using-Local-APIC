@@ -1,6 +1,6 @@
 # Time measurement using Local_APIC_Timer
 
-Measure 1 second using Local_APIC_Timer and ACPI_PM_Timer.
+Measure 1 second using Local_APIC_Timer and ACPI_PM_Timer.<br>
 ※The Local APIC Timer used here conforms to the use of xAPIC 😇
 
 # DEMO
@@ -22,5 +22,5 @@ Implemented to generate an interrupt every second by measuring the frequency of 
 
 # Note
 
-Repository for internal study sessions.
+Repository for internal study sessions.<br>
 It took 40 hours to prepare this repository for the study sessions💰
