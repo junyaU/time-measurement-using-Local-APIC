@@ -24,10 +24,13 @@ extern "C" void main(const FrameBufferConfig& frame_buffer_config,
     printj("success initialization of console\n");
 
     initializeInterruptConfig();
+    printj("success initialization of intterupt config\n");
 
     acpi::Initialize(rsdp);
+    printj("success initialization of acpi pm timer\n");
 
     initializeLocalAPICTimer();
+    printj("success initialization of local apic timer\n");
 
     while (1) {
         __asm__("hlt");

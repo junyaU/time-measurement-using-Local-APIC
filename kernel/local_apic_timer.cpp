@@ -40,7 +40,8 @@ void initializeLocalAPICTimer() {
     lvt_timer = (0b010 << 16) | InterruptVector::kLocalAPICTimer;
     initial_count = local_apic_timer_frequency;
 
-    printj("aaaaaaa");
+    printj("frequency of Local APIC Timer: %u Hz\n",
+           local_apic_timer_frequency);
 }
 
 void startTimer() { initial_count = kCountMax; }

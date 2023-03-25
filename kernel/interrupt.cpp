@@ -28,23 +28,25 @@ void loadIDT() {
     } __attribute__((packed)) idtr = {size, address};
 
     __asm__("lidt %0" : : "m"(idtr));
-
-    __asm__("sti");
 }
 
 namespace {
 __attribute__((interrupt)) void InterruptHandlerLocalAPICTimer(
     InterruptFrame* frame) {
-    // printj("ookokoko\n");
+    printj("local_APIC_timer timed out\n");
     notifyEOI();
 }
 }  // namespace
 
 void initializeInterruptConfig() {
-    const uint16_t kKernelCS = 1 << 3;
-    registerIDTEntry(
-        kIDTEntryNum, MakeIDTAttr(DescriptorType::kInterruptGate, 0),
-        reinterpret_cast<uint64_t>(InterruptHandlerLocalAPICTimer), kKernelCS);
+    uint16_t current_cs;
+    __asm__("movw %%cs, %0" : "=r"(current_cs));
+
+    registerIDTEntry(InterruptVector::kLocalAPICTimer,
+                     MakeIDTAttr(DescriptorType::kInterruptGate, 0),
+                     reinterpret_cast<uint64_t>(InterruptHandlerLocalAPICTimer),
+                     current_cs);
 
     loadIDT();
+    __asm__("sti");
 }
