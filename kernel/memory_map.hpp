@@ -2,12 +2,14 @@
 
 #include <stdint.h>
 
+#include <cstdint>
+
 struct MemoryMap {
-    unsigned long long buffer_size;
+    uint64_t buffer_size;
     void *buffer;
-    unsigned long long map_size;
-    unsigned long long map_key;
-    unsigned long long descriptor_size;
+    uint64_t map_size;
+    uint64_t map_key;
+    uint64_t descriptor_size;
     uint32_t descriptor_version;
 };
 
@@ -37,17 +39,3 @@ enum class MemoryType {
     kEfiPersistentMemory,
     kEfiMaxMemoryType
 };
-
-inline bool operator==(uint32_t lhs, MemoryType rhs) {
-    return lhs == static_cast<uint32_t>(rhs);
-}
-
-inline bool operator==(MemoryType lhs, uint32_t rhs) { return rhs == lhs; }
-
-inline bool IsAvailable(MemoryType type) {
-    return type == MemoryType::kEfiBootServicesCode ||
-           type == MemoryType::kEfiBootServicesData ||
-           type == MemoryType::kEfiConventionalMemory;
-}
-
-const int kUEFIPageSize = 4096;

@@ -4,6 +4,7 @@
 #include <cstring>
 
 #include "asmfunc.h"
+#include "console.hpp"
 
 namespace {
 template <typename T>
@@ -71,6 +72,8 @@ size_t XSDT::countSDTEntries() const {
 const FADT* fadt;
 
 void Initialize(const RSDP& rsdp) {
+    printj("Initializing ACPI configuration...\n");
+
     if (!rsdp.isValid()) {
         exit(1);
     }
@@ -95,6 +98,8 @@ void Initialize(const RSDP& rsdp) {
     if (fadt == nullptr) {
         exit(1);
     }
+
+    printj("Initialized ACPI configuration.\n");
 }
 
 void waitMilliSec(unsigned long msec) {

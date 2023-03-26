@@ -1,26 +1,25 @@
-# Time measurement using Local_APIC_Timer
+# Time Measurement Using Local APIC Timer
 
-Measure 1 second using Local_APIC_Timer and ACPI_PM_Timer.<br>
-※The Local APIC Timer used here conforms to the use of xAPIC 😇
+This is a simple operating system that demonstrates time measurement using the Local APIC Timer and ACPI PM Timer. <br>
+The Local APIC Timer used here conforms to the use of xAPIC.
 
-# DEMO
+## Demo
 
+https://user-images.githubusercontent.com/61627945/227731633-158b05aa-2f53-49e6-b201-9b4a0c4fb231.mov
 
+## Features
 
-# Features
+The operating system generates an interrupt every second by measuring the frequency of the Local APIC Timer using ACPI PM Timer.
 
-Implemented to generate an interrupt every second by measuring the frequency of the Local Apic Timer using ACPI PM Timer.
-
-# Requirement
+## Requirements
 
 * qemu-system-x86_64 7.2.0
-* C++ c++17
+* C++17
 * Clang 15.0.7
 * LLD 15.0.7
 * EDKⅡ CLANGPDB
-* gdb 12.1
+* GDB 12.1
 
-# Note
+## Note
 
-Repository for internal study sessions.<br>
-It took 40 hours to prepare this repository for the study sessions💰
+This repository is created for internal study sessions, and it took 40 hours to prepare.

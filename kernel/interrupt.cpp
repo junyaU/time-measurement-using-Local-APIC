@@ -35,12 +35,14 @@ int count = 0;
 __attribute__((interrupt)) void InterruptHandlerLocalAPICTimer(
     InterruptFrame* frame) {
     count++;
-    printj("local_APIC_timer timed out %d \n", count);
+    printj("Local APIC Timer timed out: %d second(s)\n", count);
     notifyEOI();
 }
 }  // namespace
 
 void initializeInterruptConfig() {
+    printj("Initializing interrupt configuration...\n");
+
     uint16_t current_cs;
     __asm__("movw %%cs, %0" : "=r"(current_cs));
 
@@ -51,4 +53,6 @@ void initializeInterruptConfig() {
 
     loadIDT();
     __asm__("sti");
+
+    printj("Initialized interrupt configuration.\n");
 }

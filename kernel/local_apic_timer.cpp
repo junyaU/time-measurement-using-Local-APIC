@@ -24,23 +24,24 @@ const uint32_t kCountMax = 0xffffffffu;
 }  // namespace
 
 void initializeLocalAPICTimer() {
+    printj("Initializing local APIC timer...\n");
+
     // 1:1
     divide_conf = 0b1011;
     lvt_timer = (0b001 << 16);
 
     startTimer();
     acpi::waitMilliSec(100);
-    const auto elapsed = kCountMax - current_count;
+    const auto elapsed_time = kCountMax - current_count;
     stopTimer();
 
-    unsigned long local_apic_timer_frequency =
-        static_cast<unsigned long>(elapsed * 10);
+    auto local_apic_timer_frequency = static_cast<uint64_t>(elapsed_time * 10);
 
-    divide_conf = 0b1011;
     lvt_timer = (0b010 << 16) | InterruptVector::kLocalAPICTimer;
     initial_count = local_apic_timer_frequency;
+    printj("Initialized local APIC timer.\n");
 
-    printj("frequency of Local APIC Timer: %u Hz\n",
+    printj("frequency of Local APIC Timer: %llu Hz\n",
            local_apic_timer_frequency);
 }
 

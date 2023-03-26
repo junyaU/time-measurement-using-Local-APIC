@@ -26,8 +26,8 @@ void Console::PutString(const char* s) {
         if (*s == '\n') {
             NewLine();
         } else if (cursor_column_ < kColumns - 1) {
-            WriteAscii(drawer_, cursor_column_ * FONT_HORIZON_PIXEL,
-                       cursor_row_ * FONT_VERTICAL_PIXEL, *s, fg_color_);
+            WriteAscii(drawer_, cursor_column_ * kFontHorizonPixel,
+                       cursor_row_ * kFontVerticalPixel, *s, fg_color_);
             buffer_[cursor_row_][cursor_column_] = *s;
             cursor_column_++;
         }
@@ -45,15 +45,15 @@ void Console::NewLine() {
 
     cursor_column_ = 0;
 
-    for (int y = 0; y < FONT_VERTICAL_PIXEL * kRows; y++) {
-        for (int x = 0; x < FONT_HORIZON_PIXEL * kColumns; x++) {
+    for (int y = 0; y < kFontVerticalPixel * kRows; y++) {
+        for (int x = 0; x < kFontHorizonPixel * kColumns; x++) {
             drawer_.Draw(x, y, bg_color_);
         }
     }
 
     for (int row = 0; row < kRows - 1; row++) {
         memcpy(buffer_[row], buffer_[row + 1], kColumns + 1);
-        WriteString(drawer_, 0, FONT_VERTICAL_PIXEL * row, buffer_[row],
+        WriteString(drawer_, 0, kFontVerticalPixel * row, buffer_[row],
                     fg_color_);
     }
 

@@ -5,7 +5,7 @@ extern const uint8_t _binary_hankaku_bin_end;
 extern const uint8_t _binary_hankaku_bin_size;
 
 const uint8_t* GetFont(char c) {
-    auto index = FONT_VERTICAL_PIXEL * static_cast<unsigned int>(c);
+    auto index = kFontVerticalPixel * static_cast<unsigned int>(c);
     if (index >= reinterpret_cast<uintptr_t>(&_binary_hankaku_bin_size)) {
         return nullptr;
     }
@@ -20,8 +20,8 @@ void WriteAscii(ScreenDrawer& drawer, int x, int y, char c,
         return;
     }
 
-    for (int dy = 0; dy < FONT_VERTICAL_PIXEL; ++dy) {
-        for (int dx = 0; dx < FONT_HORIZON_PIXEL; ++dx) {
+    for (int dy = 0; dy < kFontVerticalPixel; ++dy) {
+        for (int dx = 0; dx < kFontHorizonPixel; ++dx) {
             if ((font[dy] << dx) & 0x80u) {
                 drawer.Draw(x + dx, y + dy, color);
             }
@@ -32,6 +32,6 @@ void WriteAscii(ScreenDrawer& drawer, int x, int y, char c,
 void WriteString(ScreenDrawer& drawer, int x, int y, const char* s,
                  const PixelColor& color) {
     for (int i = 0; s[i] != '\0'; ++i) {
-        WriteAscii(drawer, x + FONT_HORIZON_PIXEL * i, y, s[i], color);
+        WriteAscii(drawer, x + kFontHorizonPixel * i, y, s[i], color);
     }
 }

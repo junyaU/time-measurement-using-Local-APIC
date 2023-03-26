@@ -192,6 +192,7 @@ EFI_STATUS LoadKernel(EFI_HANDLE image_handle, UINT64 *kernel_buffer) {
         Print(L"failed to allocate pages\n");
         return status;
     }
+
     CopyLoadSegments(kernel_ehdr);
 
     status = gBS->FreePool(kernel_buf);

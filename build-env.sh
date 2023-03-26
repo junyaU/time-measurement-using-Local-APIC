@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-BASEDIR="x86_64-elf"
+BASEDIR="$HOME/sandbox/time-measurement-using-Local-APIC/x86_64-elf"
 EDK2DIR="$HOME/edk2"
 
 export CPPFLAGS="\

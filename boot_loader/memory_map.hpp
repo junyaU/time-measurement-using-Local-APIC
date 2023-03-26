@@ -2,8 +2,7 @@
 
 #include <stdint.h>
 
-struct MemoryMap
-{
+struct MemoryMap {
     unsigned long long buffer_size;
     void *buffer;
     unsigned long long map_size;
@@ -12,8 +11,7 @@ struct MemoryMap
     uint32_t descriptor_version;
 };
 
-struct MemoryDescriptor
-{
+struct MemoryDescriptor {
     uint32_t type;
     uintptr_t physical_start;
     uintptr_t virtual_start;

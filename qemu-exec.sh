@@ -11,7 +11,7 @@ source edksetup.sh
 Build
 
 cd $WORKING_DIRECTORY
-source $WORKING_DIRECTORY/build-env.sh
+source ./build-env.sh
 cd kernel
 make kernel.elf
 

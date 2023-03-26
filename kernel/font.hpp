@@ -9,5 +9,5 @@ void WriteAscii(ScreenDrawer& drawer, int x, int y, char c,
 void WriteString(ScreenDrawer& drawer, int x, int y, const char* s,
                  const PixelColor& color);
 
-constexpr int FONT_HORIZON_PIXEL = 8;
-constexpr int FONT_VERTICAL_PIXEL = 16;
+constexpr int kFontHorizonPixel = 8;
+constexpr int kFontVerticalPixel = 16;
