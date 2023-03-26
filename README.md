@@ -5,7 +5,7 @@ The Local APIC Timer used here conforms to the use of xAPIC.
 
 ## Demo
 
-https://user-images.githubusercontent.com/61627945/227731633-158b05aa-2f53-49e6-b201-9b4a0c4fb231.mov
+https://user-images.githubusercontent.com/61627945/227758197-9c14a75a-367a-4f04-a56a-e0ad6dfc98e9.mov
 
 ## Features
 
