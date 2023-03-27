@@ -66,7 +66,7 @@ char console_mem[sizeof(Console)];
 
 Console* console;
 
-void InitializeConsole() {
+void initializeConsole() {
     ::console =
         new (console_mem) Console{*screen_drawer, {50, 200, 10}, {0, 0, 0}};
 }

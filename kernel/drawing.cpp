@@ -21,7 +21,7 @@ char screen_drawer_mem[sizeof(RGB8BitScreenDrawer)];
 ScreenDrawer* screen_drawer;
 FrameBufferConfig config;
 
-void InitializeScreenDrawer(const FrameBufferConfig config) {
+void initializeScreenDrawer(const FrameBufferConfig config) {
     ::config = config;
 
     switch (config.pixel_format) {
@@ -36,7 +36,7 @@ void InitializeScreenDrawer(const FrameBufferConfig config) {
     }
 }
 
-void DrawConsoleScreen() {
+void drawConsoleScreen() {
     for (int x = 0; x < config.horizon_resolution; x++) {
         for (int y = 0; y < config.vertical_resolution; y++) {
             screen_drawer->Draw(x, y, {0, 0, 0});

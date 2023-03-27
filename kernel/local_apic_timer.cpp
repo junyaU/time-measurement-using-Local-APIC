@@ -31,8 +31,10 @@ void initializeLocalAPICTimer() {
     lvt_timer = (0b001 << 16);
 
     startTimer();
-    acpi::waitMilliSec(100);
+
+    acpi::wait(100);
     const auto elapsed_time = kCountMax - current_count;
+
     stopTimer();
 
     auto local_apic_timer_frequency = static_cast<uint64_t>(elapsed_time * 10);

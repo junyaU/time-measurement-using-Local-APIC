@@ -59,7 +59,7 @@ extern const FADT* fadt;
 
 const int kPMTimerFrequency = 3579545;
 
-void Initialize(const RSDP& rsdp);
+void initialize(const RSDP& rsdp);
 
-void waitMilliSec(unsigned long msec);
+void wait(unsigned long milliSec);
 }  // namespace acpi

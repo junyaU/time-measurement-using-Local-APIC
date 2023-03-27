@@ -71,7 +71,7 @@ size_t XSDT::countSDTEntries() const {
 
 const FADT* fadt;
 
-void Initialize(const RSDP& rsdp) {
+void initialize(const RSDP& rsdp) {
     printj("Initializing ACPI configuration...\n");
 
     if (!rsdp.isValid()) {
@@ -102,9 +102,9 @@ void Initialize(const RSDP& rsdp) {
     printj("Initialized ACPI configuration.\n");
 }
 
-void waitMilliSec(unsigned long msec) {
+void wait(unsigned long milliSec) {
     const uint32_t start_count = receiveFromIO(fadt->pm_tmr_blk);
-    uint32_t end_count = start_count + kPMTimerFrequency * msec / 1000;
+    uint32_t end_count = start_count + kPMTimerFrequency * milliSec / 1000;
 
     const bool pm_timer_32 = (fadt->flags >> 8) & 1;
     if (!pm_timer_32) {

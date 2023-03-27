@@ -40,6 +40,6 @@ class BGR8BitScreenDrawer : public ScreenDrawer {
 extern ScreenDrawer* screen_drawer;
 extern FrameBufferConfig config;
 
-void InitializeScreenDrawer(const FrameBufferConfig config);
+void initializeScreenDrawer(const FrameBufferConfig config);
 
-void DrawConsoleScreen();
+void drawConsoleScreen();

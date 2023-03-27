@@ -24,6 +24,6 @@ class Console {
 
 extern Console* console;
 
-void InitializeConsole();
+void initializeConsole();
 
 int printj(const char* format, ...);

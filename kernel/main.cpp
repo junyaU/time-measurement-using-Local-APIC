@@ -14,17 +14,17 @@
 
 extern "C" void main(const FrameBufferConfig& frame_buffer_config,
                      const MemoryMap& memory_map, const acpi::RSDP& rsdp) {
-    InitializeScreenDrawer(frame_buffer_config);
+    initializeScreenDrawer(frame_buffer_config);
 
-    DrawConsoleScreen();
+    drawConsoleScreen();
 
-    InitializeConsole();
+    initializeConsole();
 
     printj("Booting the operating system...\n");
 
     initializeInterruptConfig();
 
-    acpi::Initialize(rsdp);
+    acpi::initialize(rsdp);
 
     initializeLocalAPICTimer();
 
