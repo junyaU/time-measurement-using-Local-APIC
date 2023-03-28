@@ -22,4 +22,4 @@ The operating system generates an interrupt every second by measuring the freque
 
 ## Note
 
-This repository is created for internal study sessions, and it took 40 hours to prepare.
+This repository is created for internal study sessions.
